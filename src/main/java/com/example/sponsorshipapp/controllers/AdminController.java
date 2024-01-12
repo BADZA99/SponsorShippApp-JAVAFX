@@ -18,6 +18,11 @@ public class AdminController {
         loadPage("actions");
 
     }
+    @FXML
+    void ToHome(MouseEvent event) {
+        loadPage("home");
+
+    }
 
     @FXML
     void ToAddCandidat(MouseEvent event) {

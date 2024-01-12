@@ -93,7 +93,7 @@ public class AddCandidatController {
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, electeur.getLogin());
             preparedStatement.setString(4, mdp);
-            preparedStatement.setInt(5, 1);
+            preparedStatement.setInt(5, 2);
             preparedStatement.setInt(6, electeur.getProfilId());
 
             // Exécuter la requête

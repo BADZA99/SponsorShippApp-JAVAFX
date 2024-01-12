@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.example.sponsorshipapp.controllers.ListUserController">
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="486.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="191.0" layoutY="183.0" text="ACTIONS" textFill="#f2eeee">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-   </children>
+    <TableView fx:id="userTable" layoutX="20" layoutY="20">
+        <columns>
+            <TableColumn fx:id="nomColumn" text="Nom">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nom" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="prenomColumn" text="Prenom">
+                <cellValueFactory>
+                    <PropertyValueFactory property="prenom" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="loginColumn" text="Login">
+                <cellValueFactory>
+                    <PropertyValueFactory property="login" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="etatColumn" text="Etat">
+                <cellValueFactory>
+                    <PropertyValueFactory property="etat" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="profilColumn" text="Profil">
+                <cellValueFactory>
+                    <PropertyValueFactory property="profil" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionColumn" text="Actions" prefWidth="150">
+                <cellFactory>
+                    <Callback>
+                        <fx:factory>
+                            <ButtonCellFactory />
+                        </fx:factory>
+                    </Callback>
+                </cellFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
 </AnchorPane>

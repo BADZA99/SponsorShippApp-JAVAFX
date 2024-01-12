@@ -25,9 +25,9 @@ public class Electeur {
     // creer la fonction getProfilId
     public int getProfilId() {
         if (profil.equals("ROLE_ELECTEUR")) {
-            return 2;
-        } else if (profil.equals("ROLE_CANDIDAT")) {
             return 3;
+        } else if (profil.equals("ROLE_CANDIDAT")) {
+            return 2;
         }
         return 0;
     }
