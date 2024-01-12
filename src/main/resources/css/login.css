@@ -1,0 +1,46 @@
+.login_container {
+  -fx-background-color: #eeeeee;
+}
+
+.logo_container {
+  -fx-background-color: #0a3353;
+  -fx-alignment: center;
+  -fx-text-fill: #ffffff;
+}
+
+.login_container Text {
+  -fx-font-size: 2em;
+  -fx-text-fill: #ffffff;
+}
+
+.login_container FontAwesomeIconView {
+  -fx-fill: #ffffff;
+}
+
+.login_form_container {
+  -fx-spacing: 15;
+  -fx-alignment: top_left;
+}
+
+.login_form_container Label {
+  -fx-font-size: 1.1em;
+  -fx-font-weight: bold;
+}
+
+.input_field {
+  -fx-background-color: #ffffff;
+  -fx-pref-height: 35;
+  -fx-pref-size: 1.2em;
+}
+
+.login_form_container Button {
+  -fx-background-color: #0a3353;
+  -fx-text-fill: #ffffff;
+  -fx-pref-width: 150;
+  -fx-pref-height: 30;
+  -fx-font-size: 1.2em;
+}
+
+.login_form_container Button:hover {
+  -fx-cursor: hand;
+}
