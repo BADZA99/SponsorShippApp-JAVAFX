@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.example.sponsorshipapp.controllers.ListUserController">
+
+    <TableView fx:id="userTable" layoutX="20" layoutY="20">
+        <columns>
+            <TableColumn fx:id="nomColumn" text="Nom">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nom" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="prenomColumn" text="Prenom">
+                <cellValueFactory>
+                    <PropertyValueFactory property="prenom" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="loginColumn" text="Login">
+                <cellValueFactory>
+                    <PropertyValueFactory property="login" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="etatColumn" text="Etat">
+                <cellValueFactory>
+                    <PropertyValueFactory property="etat" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="profilColumn" text="Profil">
+                <cellValueFactory>
+                    <PropertyValueFactory property="profil" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionColumn" text="Actions" prefWidth="150">
+                <cellFactory>
+                    <Callback>
+                        <fx:factory>
+                            <ButtonCellFactory />
+                        </fx:factory>
+                    </Callback>
+                </cellFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+</AnchorPane>
