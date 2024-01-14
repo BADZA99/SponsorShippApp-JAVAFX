@@ -15,7 +15,7 @@ public class AdminController {
 
     @FXML
     void ToActions(MouseEvent event) {
-        loadPage("actions");
+        loadPage("listeUser");
 
     }
     @FXML
