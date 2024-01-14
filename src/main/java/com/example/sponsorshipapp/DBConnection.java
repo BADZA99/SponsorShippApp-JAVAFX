@@ -16,9 +16,9 @@ public class DBConnection {
             // Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection(url, user, password);
-            System.out.println("connexion reussie");
+            System.out.println("connexion a la bdd reussie");
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("connexion echouee");
+            System.out.println("connexion a la bdd echouee");
             throw new RuntimeException(e);
         }
         return con;
