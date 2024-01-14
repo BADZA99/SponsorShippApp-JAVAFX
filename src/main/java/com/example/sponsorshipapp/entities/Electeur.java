@@ -10,6 +10,8 @@ import java.util.Random;
 
 import com.example.sponsorshipapp.DBConnection;
 
+import javafx.scene.control.Button;
+
 public class Electeur {
     private String nom;
     private String prenom;
@@ -19,6 +21,10 @@ public class Electeur {
     // private String profilId;
     private int activated;
     private int idElec;
+    // creer un bouton
+    // private Button showInfoBtn;
+    private Button desactivateBtn;
+
 
 
 
@@ -39,6 +45,7 @@ public class Electeur {
         this.profil = profil;
         this.activated = activated;
         this.idElec = idElec;
+        this.desactivateBtn=new Button("desactiver");
 
     }
 
@@ -72,7 +79,12 @@ public class Electeur {
 
     // creer la fonction getActivated
     public int getActivated() {
-        return 1;
+        if (this.activated == 0) {
+            this.desactivateBtn.setText("activer");
+        } else {
+            this.desactivateBtn.setText("desactiver");
+        }
+        return this.activated;
     }
 
     // creer la fonction getNom
@@ -100,37 +112,39 @@ public class Electeur {
         return idElec;
     }
 
+    // gettteur et setteur button
+    public Button getDesactivateBtn() {
+        return desactivateBtn;
+    }
+    public void setDesactivateBtn(Button desactivateBtn) {
+        this.desactivateBtn = desactivateBtn;
+    }
 
-    // creer la fonction getAll
-    // public static List<Electeur> getAll() {
-    //     List<Electeur> Electeurs = new ArrayList<>();
-    //     try {
-    //         Connection con = DBConnection.getConnection();
-    //         // Créer une requête SQL pour obtenir tous les utilisateurs
-    //         String sql = "SELECT * FROM user";
+    // setactivated
+    public void setActivated(int activated) {
+        this.activated = activated;
+    }
 
-    //         // Créer une requête préparée
-    //         PreparedStatement preparedStatement = con.prepareStatement(sql);
+// fonction sur le bouton desactivateBtn qui va update le champ activated de l'electeur correspondant 
+    public void desactiverUtilisateur(Electeur electeur) {
+        // verifier activated de l'electeur
+        if (electeur.getActivated() == 0) {
+            electeur.setActivated(1);
+        } else
+        electeur.setActivated(0);
+        String sql = "UPDATE user SET activated = ? WHERE id = ?";
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, electeur.getActivated());
+            preparedStatement.setInt(2, electeur.getIdElec());
 
-    //         // Exécuter la requête et obtenir les résultats
-    //         ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Desactiver " + electeur.getLogin());
 
-    //         // Parcourir les résultats et ajouter chaque utilisateur à la liste des utilisateurs
-    //         while (resultSet.next()) {
-    //             String nom = resultSet.getString("nom");
-    //             String prenom = resultSet.getString("prenom");
-    //             String login = resultSet.getString("login");
-    //             String motDePasse = resultSet.getString("password");
-    //             String profil = resultSet.getString("profil");
-    //             Electeurbdd electeur = new Electeurbdd(nom, prenom, motDePasse, profil,login);
-    //             Electeurs.add(electeur);
-    //         }
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    //     return Electeurs;
-    // }
-
+    }
 
 
     private String generateLogin(String nom, String prenom) {

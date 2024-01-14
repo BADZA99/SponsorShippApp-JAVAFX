@@ -2,13 +2,16 @@ package com.example.sponsorshipapp.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.net.URI;
 import java.net.URL;
@@ -44,7 +47,7 @@ public class ListeUserController {
     private TableColumn<Electeur, Integer> activatedCol;
 
     @FXML
-    private TableColumn<Electeur, Integer> actionsCol;
+    private TableColumn<Electeur, String> actionsCol;
 
     // button
     // @FXML
@@ -73,8 +76,7 @@ public class ListeUserController {
                 String profil = resultSet.getString("profil_id");
                 int activated = resultSet.getInt("activated");
                 int id = resultSet.getInt("id");
-                Electeur Electeur = new Electeur(nom, prenom, login, motDePasse, profil, activated
-                ,id);
+                Electeur Electeur = new Electeur(nom, prenom, login, motDePasse, profil, activated, id);
                 Electeurs.add(Electeur);
             }
         } catch (SQLException e) {
@@ -85,40 +87,57 @@ public class ListeUserController {
 
     }
 
+    // public void desactiverUtilisateur(Electeur electeur) {
+    //     electeur.setActivated(0);
+    //     // Ici, vous pouvez ajouter du code pour enregistrer les modifications dans la base de données si nécessaire
+    //     // update le activated de l'electeur avec avec son id 
+    //     String sql = "UPDATE user SET activated = 0 WHERE id = ?";
+    //     try {
+    //         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql);
+    //         preparedStatement.setInt(1, electeur.getIdElec());
+    //         preparedStatement.executeUpdate();
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    //     System.out.println("Desactiver " + electeur.getLogin());
+    // }
+
     public void initialize() {
         DBConnection.getConnection();
         // Créer une liste d'Electeurs
         List<Electeur> ElecteursData = getAll();
-        // afficher dans le terminal
-        // System.out.println(Electeurs + "\n");
-        // parcour le tableau d'electeur et affcihe les informations de chaque electeur
-        // for (Electeur Electeur : Electeurs) {
-        //     System.out.println(Electeur);
-        // }
-
-        // remplir le tableau avec les eleteurs sauf ceux qui ont un profil_id de 1
-        // Assumons que ElecteursData est une ObservableList<Electeur>
         ObservableList<Electeur> filteredElecteurs = FXCollections.observableArrayList(
-                ElecteursData.stream().filter(electeur -> !electeur.getProfil().equals("1")).collect(Collectors.toList())
-        );
+                ElecteursData.stream().filter(electeur -> !electeur.getProfil().equals("1"))
+                        .collect(Collectors.toList()));
+
+
+        // parcourir ElecteursData et lier chaque bouton desactiver a la fonction desactiver
+        for (Electeur electeur : ElecteursData) {
+            electeur.getDesactivateBtn().setOnAction((ActionEvent event) -> {
+                electeur.desactiverUtilisateur(electeur);
+                // rafraichir la page
+                initialize();
+            });
+        }
+
 
         // Définir les cell value factories
         idCol.setCellValueFactory(new PropertyValueFactory<Electeur, Integer>("idElec"));
-        loginCol.setCellValueFactory(new PropertyValueFactory<Electeur,String>("login"));
+        loginCol.setCellValueFactory(new PropertyValueFactory<Electeur, String>("login"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<Electeur, String>("prenom"));
         profilIdCol.setCellValueFactory(new PropertyValueFactory<Electeur, Integer>("profil"));
         activatedCol.setCellValueFactory(new PropertyValueFactory<Electeur, Integer>("activated"));
-        // actionsCol.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        actionsCol.setCellValueFactory(new PropertyValueFactory<Electeur, String>("desactivateBtn"));
+
+        
 
         // Afficher les électeurs filtrés dans le tableau
         userTable.setItems(filteredElecteurs);
 
-        
-
-
-
-
-
     }
+
+ 
+
+   
 
 }
