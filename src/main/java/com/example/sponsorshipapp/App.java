@@ -24,6 +24,15 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    // fonction qui ouvre la page electeur 
+    public void openElecteurPage() throws Exception {
+        // fermer toutes les fenetres avant
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("/pages/electeur.fxml"));
+        Scene scene =new Scene(loader.load());
+        Stage stage =new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch(args);

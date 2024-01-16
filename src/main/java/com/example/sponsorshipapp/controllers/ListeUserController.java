@@ -87,21 +87,6 @@ public class ListeUserController {
 
     }
 
-    // public void desactiverUtilisateur(Electeur electeur) {
-    //     electeur.setActivated(0);
-    //     // Ici, vous pouvez ajouter du code pour enregistrer les modifications dans la base de données si nécessaire
-    //     // update le activated de l'electeur avec avec son id 
-    //     String sql = "UPDATE user SET activated = 0 WHERE id = ?";
-    //     try {
-    //         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql);
-    //         preparedStatement.setInt(1, electeur.getIdElec());
-    //         preparedStatement.executeUpdate();
-    //     } catch (SQLException e) {
-    //         System.out.println(e.getMessage());
-    //     }
-    //     System.out.println("Desactiver " + electeur.getLogin());
-    // }
-
     public void initialize() {
         DBConnection.getConnection();
         // Créer une liste d'Electeurs
