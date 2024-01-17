@@ -1,0 +1,16 @@
+Se connecter en tant que ADMIN
+
+1 Cier un électeur nommé Test
+
+3 Test parraine un candidat
+
+3 Test parraine un autre can didat
+
+Veri ver la Darrains d'un candidat donnés
+
+(5 Vési or le noube maximal c'esteurs Dour un candidat doné
+
+6) Désactiver un élecour
+
+
+NOTE FINAL 19/20
