@@ -85,6 +85,23 @@ public class LoginController {
                     stage.close();
                 } else {
                     System.out.println("Candidat");
+                    int idUser = rs.getInt("id");
+                    int ConnectedUserActivated = rs.getInt("activated");
+                    // appeler la fonction setConnectedUserId de la classe electeur
+                    Electeur electeur = new Electeur(
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("login"),
+                            rs.getString("password"),
+                            rs.getString("profil_id"),
+                            rs.getInt("activated"),
+                            rs.getInt("id"));
+                    electeur.setConnectedUserId(idUser);
+                    App app = new App();
+                    app.openCandidatPage();
+                    Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                    stage.close();
+
 
                 }
 

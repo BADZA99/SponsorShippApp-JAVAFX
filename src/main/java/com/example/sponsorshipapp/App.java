@@ -33,6 +33,15 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    // fonction qui ouvre la page candidat
+    public void openCandidatPage() throws Exception {
+        // fermer toutes les fenetres avant
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("/pages/candidat.fxml"));
+        Scene scene =new Scene(loader.load());
+        Stage stage =new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch(args);
