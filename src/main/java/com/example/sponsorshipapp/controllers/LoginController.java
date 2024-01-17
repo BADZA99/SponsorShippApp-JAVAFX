@@ -83,7 +83,8 @@ public class LoginController {
                     app.openElecteurPage();
                     Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
                     stage.close();
-                } else {
+                } 
+                if (idProfil == 2) {
                     System.out.println("Candidat");
                     int idUser = rs.getInt("id");
                     int ConnectedUserActivated = rs.getInt("activated");

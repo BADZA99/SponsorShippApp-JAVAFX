@@ -12,6 +12,7 @@ import com.example.sponsorshipapp.DBConnection;
 import com.example.sponsorshipapp.entities.Electeur;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -69,14 +70,24 @@ public class ListeParrainsController {
     // fonction initialize
     public void initialize() {
         // recuperer les candidats
-        List<Electeur> sponsors = getSponsors(electeur.getConnectedUserId());
-        // creer les colonnes
-        idCol.setCellValueFactory(new PropertyValueFactory<>("idElec"));
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        // actionsCol.setCellValueFactory(new PropertyValueFactory<>("actionsCol"));
-        // ajouter les candidats dans la table
-        userTable.getItems().addAll(sponsors);
+        // affiche le getConnectedUserActivated
+        System.out.println(electeur.getConnectedUserActivated());
+            List<Electeur> sponsors = getSponsors(electeur.getConnectedUserId());
+            // creer les colonnes
+            idCol.setCellValueFactory(new PropertyValueFactory<>("idElec"));
+            nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            // actionsCol.setCellValueFactory(new PropertyValueFactory<>("actionsCol"));
+            // ajouter les candidats dans la table
+            userTable.getItems().addAll(sponsors);
+        
+            // affiche une alerte disant que l'electeur est desactiver par l'admin
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Vous n'avez pas le droit d'acceder a cette page");
+            alert.setContentText("Veuillez contacter l'administrateur");
+            alert.showAndWait();
+            
     }
 
 

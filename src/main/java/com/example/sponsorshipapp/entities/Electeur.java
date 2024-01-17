@@ -26,7 +26,7 @@ public class Electeur {
     private static int connectedUserId;
     private static int connectedUserActivated;
     // creer un bouton
-    // private Button showInfoBtn;
+    private Button showInfoBtn;
     private Button desactivateBtn;
     private Button parrainerBtn;
     private static int HasSponsored=-1;
@@ -53,6 +53,7 @@ public class Electeur {
         this.idElec = idElec;
         this.desactivateBtn=new Button("desactiver");
         this.parrainerBtn=new Button("parrainer");
+        this.showInfoBtn=new Button("info");
 
     }
 
@@ -153,12 +154,12 @@ public class Electeur {
     public Button getParrainerBtn() {
         return parrainerBtn;
     }
-
-    // getBtns()
-    public List<Button> getBtns() {
-        List<Button> btns = new ArrayList<>();
-        btns.add(this.parrainerBtn);
-        return btns;
+    // getteur setteur pour showbtninfo
+    public Button getShowInfoBtn() {
+        return showInfoBtn;
+    }
+    public void setShowInfoBtn(Button showInfoBtn) {
+        this.showInfoBtn = showInfoBtn;
     }
     public void setParrainerBtn(Button parrainer) {
         this.parrainerBtn = parrainer;
@@ -173,6 +174,9 @@ public class Electeur {
     public static void setConnectedUserActivated(int connectedUserActivated) {
         Electeur.connectedUserActivated = connectedUserActivated;
     }
+
+    // creer la fonction  qui affiche les parrains d'un candidat dans une alerte
+
 
   
 // fonction sur le bouton desactivateBtn qui va update le champ activated de l'electeur correspondant 
@@ -211,7 +215,7 @@ public class Electeur {
         System.out.println("hasSponsored de l'electeur connecte " + electeur.getHasSponsored());
 
         // verifier si l'electeur est desactive par l'admin
-        if (electeur.getConnectedUserActivated() != 1) {
+        if (electeur.getConnectedUserActivated() == 0) {
             System.out.println("vous etes desactiver par l'admin vous pouvez pas pas parrainer");
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -256,5 +260,56 @@ public class Electeur {
         }
     }
 
-  
+    // fonction qui recupere tous les parrains d'un candidat
+    public List<Electeur> getSponsors(int candidatId) {
+        List<Electeur> sponsors = new ArrayList<>();
+
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+                    "select * from user where id in (select electeur_id from parrainages where candidat_id=?)");
+
+            pstmt.setInt(1, candidatId);
+            // AFFICHE CANDIDAT ID
+            System.out.println(candidatId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Electeur Parrains = new Electeur(rs.getString("nom"), rs.getString("prenom"), rs.getString("login"),
+                        rs.getString("password"), rs.getString("profil_id"), rs.getInt("activated"), rs.getInt("id"));
+                sponsors.add(Parrains);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("nombre de parrains" + sponsors.size());
+
+        return sponsors;
+    }
+
+    // cree une fonction getAndShowAllSponsors qui va recuperer tous les parrains du uer connecte et les affiche dans une alerte
+    public void ShowAllSponsors() {
+        // recuperer les parrains
+        // idelecteur
+        int idelecteur = this.getIdElec();
+        List<Electeur> sponsors = getSponsors(idelecteur);
+        // afficher les parrains dans une alerte
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Liste des parrains");
+        alert.setHeaderText(null);
+        // si sponsor est vide 
+        if (sponsors.isEmpty()) {
+            alert.setContentText("ce candidat n'as pas encore de parrains");
+            alert.showAndWait();
+            return;
+        }
+        alert.setContentText("Liste des parrains");
+        for (Electeur sponsor : sponsors) {
+            alert.setContentText(alert.getContentText() + "\n" + sponsor.getNom() + " " + sponsor.getPrenom());
+        }
+        alert.showAndWait();
+    }
+
 }

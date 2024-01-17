@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sponsorshipapp.controllers.StatsController">
+   <children>
+      <TableView fx:id="userTable" minHeight="400.0" minWidth="486.0" prefHeight="400.0" prefWidth="486.0" style="-fx-background-color: #14242B;">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="37.0" style="-fx-alignment: center;" text="ID" />
+          <TableColumn fx:id="activatedCol" prefWidth="69.0" style="fx-alignment: center;" text="Activated" />
+            <TableColumn fx:id="prenomCol" prefWidth="79.0" style="fx-alignment: center;" text="Prenom" />
+            <TableColumn fx:id="profilIdCol" prefWidth="71.0" style="fx-alignment: center;" text="id profil" />
+            <TableColumn fx:id="loginCol" prefWidth="105.0" style="fx-alignment: center;" text="Login" />
+            <TableColumn fx:id="actionsCol" prefWidth="124.0" style="fx-alignment: center;" text="Actions" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

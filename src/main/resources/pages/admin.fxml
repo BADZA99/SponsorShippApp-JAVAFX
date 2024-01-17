@@ -11,7 +11,7 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="114.0" style="-fx-background-color: #001824;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="10.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#ToHome" prefHeight="48.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Home" textFill="#f5f2f2">
+            <Button fx:id="statsBtn" layoutX="10.0" layoutY="106.0" mnemonicParsing="false" onAction="#toStats" onMouseClicked="#toStats" prefHeight="48.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="statistiques" textFill="#f5f2f2">
                <font>
                   <Font size="15.0" />
                </font>
@@ -31,15 +31,20 @@
                   <Font size="15.0" />
                </font>
             </Button>
+            <!-- <Button fx:id="btndeco" layoutX="10.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#deconnexion" prefHeight="48.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="deconnexion" textFill="#f5f2f2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button> -->
          </children>
       </VBox>
    </left>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #14242B; -fx-border-width: 0px 0px 2px 0px;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#f8f7f7" layoutX="183.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ELECTEUR" wrappingWidth="119.13671875">
+            <Text fill="#f8f7f7" layoutX="125.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIENVENUE ADMIN" wrappingWidth="233.13671875">
                <font>
-                  <Font size="17.0" />
+                  <Font name="System Bold Italic" size="24.0" />
                </font>
             </Text>
          </children>
